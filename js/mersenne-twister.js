@@ -15,12 +15,13 @@ const _MersenneTwister = _make({
     },
 
     randomInt () {
-        const mag01 = [0x0, _MersenneTwister.MATRIX_A];
+        const mag01 = [0x0, _MersenneTwister.MATRIX_A],
+            setY = index => (this.mt[index] & _MersenneTwister.UPPER_MASK) | (this.mt[index + 1] & _MersenneTwister.LOWER_MASK);
 
         let y;
 
         if (this.mtIndex >= _MersenneTwister.N) {
-            let kk;
+            let index;
 
             /*
             This code is unreachable in this revision, as there is no
@@ -34,14 +35,14 @@ const _MersenneTwister = _make({
             }
             */
 
-            for (kk = 0; kk < _MersenneTwister.N - _MersenneTwister.M; kk += 1) {
-                y = (this.mt[kk] & _MersenneTwister.UPPER_MASK) | (this.mt[kk + 1] & _MersenneTwister.LOWER_MASK);
-                this.mt[kk] = this.mt[kk + _MersenneTwister.M] ^ (y >>> 1) ^ mag01[y & 0x1];
+            for (index = 0; index < _MersenneTwister.N - _MersenneTwister.M; index += 1) {
+                y = setY(index);
+                this.mt[index] = this.mt[index + _MersenneTwister.M] ^ (y >>> 1) ^ mag01[y & 0x1];
             }
 
-            for (; kk < _MersenneTwister.N - 1; kk += 1) {
-                y = (this.mt[kk] & _MersenneTwister.UPPER_MASK) | (this.mt[kk + 1] & _MersenneTwister.LOWER_MASK);
-                this.mt[kk] = this.mt[kk + (_MersenneTwister.M - _MersenneTwister.N)] ^ (y >>> 1) ^ mag01[y & 0x1];
+            for (; index < _MersenneTwister.N - 1; index += 1) {
+                y = setY(index);
+                this.mt[index] = this.mt[index + (_MersenneTwister.M - _MersenneTwister.N)] ^ (y >>> 1) ^ mag01[y & 0x1];
             }
 
             y = (this.mt[_MersenneTwister.N - 1] & _MersenneTwister.UPPER_MASK) | (this.mt[0] & _MersenneTwister.LOWER_MASK);
@@ -90,6 +91,15 @@ const _MersenneTwister = _make({
     },
 
     _initWithArray (array) {
+        const setAndResetBigI = i => {
+            if (i >= _MersenneTwister.N) {
+                this.mt[0] = this.mt[_MersenneTwister.N - 1];
+                return 1;
+            }
+
+            return i;
+        };
+
         let i = 1,
             j = 0,
             k = _MersenneTwister.N > array.length ?
@@ -107,10 +117,7 @@ const _MersenneTwister = _make({
             i += 1;
             j += 1;
 
-            if (i >= _MersenneTwister.N) {
-                this.mt[0] = this.mt[_MersenneTwister.N - 1];
-                i = 1;
-            }
+            i = setAndResetBigI(i);
 
             if (j >= array.length) {
                 j = 0;
@@ -125,10 +132,7 @@ const _MersenneTwister = _make({
 
             i += 1;
 
-            if (i >= _MersenneTwister.N) {
-                this.mt[0] = this.mt[_MersenneTwister.N - 1];
-                i = 1;
-            }
+            i = setAndResetBigI(i);
         }
 
         this.mt[0] = 0x80000000;
