@@ -1,6 +1,7 @@
 {
     "author": "Duane Sibilly <duane@sibilly.com> (https://github.com/dsibilly/)",
     "babel": {
+        "comments": false,
         "env": {
             "test": {
                 "plugins": [
@@ -19,7 +20,7 @@
         "url": "https://github.com/dsibilly/mersenne-twister/issues"
     },
     "dependencies": {
-        "isotropic-make": "^0.10.0"
+        "isotropic-make": "~0.10.0"
     },
     "description": "A native JS implementation of the Mersenne Twister PRNG.",
     "devDependencies": {
