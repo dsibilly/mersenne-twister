@@ -2,6 +2,8 @@
 
 A JavaScript implementation of the Mersenne Twister pseudo-random number generator.
 
+[![npm version](https://badge.fury.io/js/%40dsibilly%2Fmersenne-twister.svg)](https://badge.fury.io/js/%40dsibilly%2Fmersenne-twister) [![Build Status](https://travis-ci.org/dsibilly/mersenne-twister.svg?branch=master)](https://travis-ci.org/dsibilly/mersenne-twister) [![Coverage Status](https://coveralls.io/repos/github/dsibilly/mersenne-twister/badge.svg?branch=master)](https://coveralls.io/github/dsibilly/mersenne-twister?branch=master)
+
 ## How To Use
 
 ### Installation (via [npm](https://www.npmjs.com/package/@dsibilly/mersenne-twister))
