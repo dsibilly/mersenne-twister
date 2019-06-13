@@ -1,0 +1,76 @@
+# mersenne-twister
+
+A JavaScript implementation of the Mersenne Twister pseudo-random number generator.
+
+## How To Use
+
+### Installation (via [npm](https://www.npmjs.com/package/@dsibilly/mersenne-twister))
+
+```bash
+$ npm install @dsibilly/mersenne-twister
+```
+
+### Usage
+
+Get an instance of RNG:
+
+```javascript
+var MersenneTwister = require('@dsibilly/mersenne-twister'),
+  rng = = new MersenneTwister();
+```
+
+#### Seeding the RNG
+
+```javascript
+var rng2 = new MersenneTwister(4567);
+var rng3 = new MersenneTwister([
+    // You can also seed with an array of values
+    123,
+    456,
+    789
+]);
+```
+
+#### Generating Numbers
+
+Generate a random 32-bit integer:
+
+```javascript
+var result = rng.randomInt();
+```
+
+Generate a random 31-bit integer::
+
+```javascript
+var result = rng.randomInt31();
+```
+
+Generate a random number between 0 and 1, exclusive (e.g. 0 < n < 1):
+
+```javascript
+var result = rng.randomExclusive();
+```
+
+Generate a random number where 0 <= n < 1:
+
+```javascript
+var result = rng.random();
+```
+
+Generate a random number between 0 and 1, inclusive (e.g. 0 <= n <= 1):
+
+```javascript
+var result = rng.randomInclusive();
+```
+
+Generate a random 53-bit number, 0 <= n <= 1:
+
+```javascript
+var result = rng.randomLong();
+```
+
+## License
+[MIT License](http://www.opensource.org/licenses/mit-license.php)
+
+## Maintainer
+[Duane Sibilly](https://github.com/dsibilly/)
