@@ -1,0 +1,114 @@
+{
+    "author": "Duane Sibilly <duane@sibilly.com> (https://github.com/dsibilly/)",
+    "babel": {
+        "env": {
+            "test": {
+                "plugins": [
+                    "istanbul"
+                ]
+            }
+        },
+        "plugins": [
+            "transform-line"
+        ],
+        "presets": [
+            "@babel/preset-env"
+        ]
+    },
+    "bugs": {
+        "url": "https://github.com/dsibilly/mersenne-twister/issues"
+    },
+    "dependencies": {
+        "isotropic-make": "^0.10.0"
+    },
+    "description": "A native JS implementation of the Mersenne Twister PRNG.",
+    "devDependencies": {
+        "@babel/cli": "~7.4.4",
+        "@babel/core": "~7.4.5",
+        "@babel/node": "~7.4.5",
+        "@babel/preset-env": "~7.4.5",
+        "@babel/register": "~7.4.4",
+        "@babel/runtime": "~7.4.5",
+        "babel-plugin-istanbul": "~5.1.4",
+        "babel-plugin-transform-line": "~0.8.0",
+        "chai": "~4.2.0",
+        "coveralls": "~3.0.4",
+        "cross-env": "~5.2.0",
+        "depcheck": "~0.8.0",
+        "eslint": "~5.16.0",
+        "eslint-plugin-isotropic": "~0.5.0",
+        "mocha": "~6.1.4",
+        "nyc": "~14.1.1",
+        "pre-commit": "~1.2.2"
+    },
+    "engines": {
+        "node": ">=8",
+        "npm": ">=6"
+    },
+    "eslintConfig": {
+        "env": {
+            "es6": true,
+            "mocha": true,
+            "node": true
+        },
+        "extends": "plugin:isotropic/isotropic",
+        "parserOptions": {
+            "ecmaFeatures": {
+                "globalReturn": false,
+                "impliedStrict": true,
+                "jsx": false
+            },
+            "ecmaVersion": 2018,
+            "sourceType": "module"
+        },
+        "plugins": [
+            "isotropic"
+        ],
+        "root": true,
+        "rules": {
+            "isotropic/sort-vars": 0,
+            "sort-imports": 0
+        }
+    },
+    "homepage": "https://github.com/dsibilly/mersenne-twister/",
+    "license": "MIT",
+    "main": "lib/mersenne-twister.js",
+    "name": "@dsibilly/mersenne-twister",
+    "nyc": {
+        "all": true,
+        "cache": true,
+        "check-coverage": true,
+        "include": [
+            "js/*.js",
+            "js/*/*.js"
+        ],
+        "exclude": [
+            "lib/*"
+        ],
+        "instrument": false,
+        "reporter": [
+            "lcov",
+            "text-summary"
+        ],
+        "require": [
+            "@babel/register"
+        ],
+        "sourceMap": false
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/dsibilly/mersenne-twister.git"
+    },
+    "scripts": {
+        "build": "BABEL_ENV=build babel js -d lib",
+        "coverage": "nyc check-coverage",
+        "lint": "node_modules/.bin/eslint js",
+        "posttest": "[ -z \"$npm_config_coverage\" ] || nyc check-coverage",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm audit && nyc check-coverage",
+        "pretest": "npm run lint",
+        "rebuild": "rm -rf ./node_modules && rm package-lock.json && npm install",
+        "test": "cross-env BABEL_ENV=test nyc mocha"
+    },
+    "version": "1.0.0"
+}
