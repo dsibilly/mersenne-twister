@@ -17,20 +17,27 @@ $ npm install @dsibilly/mersenne-twister
 Get an instance of RNG:
 
 ```javascript
-var MersenneTwister = require('@dsibilly/mersenne-twister'),
+const MersenneTwister = require('@dsibilly/mersenne-twister').default,
   rng = = new MersenneTwister();
+```
+
+...or with ES2015+ `import`:
+```javascript
+import MersenneTwister from '@dsibilly/mersenne-twister';
+
+const rng = new MersenneTwister();
 ```
 
 #### Seeding the RNG
 
 ```javascript
-var rng2 = new MersenneTwister(4567);
-var rng3 = new MersenneTwister([
-    // You can also seed with an array of values
-    123,
-    456,
-    789
-]);
+const rng2 = new MersenneTwister(4567),
+    rng3 = new MersenneTwister([
+        // You can also seed with an array of values
+        123,
+        456,
+        789
+    ]);
 ```
 
 #### Generating Numbers
@@ -38,37 +45,37 @@ var rng3 = new MersenneTwister([
 Generate a random 32-bit integer:
 
 ```javascript
-var result = rng.randomInt();
+const result = rng.randomInt();
 ```
 
 Generate a random 31-bit integer::
 
 ```javascript
-var result = rng.randomInt31();
+const result = rng.randomInt31();
 ```
 
 Generate a random number between 0 and 1, exclusive (e.g. 0 < n < 1):
 
 ```javascript
-var result = rng.randomExclusive();
+const result = rng.randomExclusive();
 ```
 
 Generate a random number where 0 <= n < 1:
 
 ```javascript
-var result = rng.random();
+const result = rng.random();
 ```
 
 Generate a random number between 0 and 1, inclusive (e.g. 0 <= n <= 1):
 
 ```javascript
-var result = rng.randomInclusive();
+const result = rng.randomInclusive();
 ```
 
 Generate a random 53-bit number, 0 <= n <= 1:
 
 ```javascript
-var result = rng.randomLong();
+const result = rng.randomLong();
 ```
 
 ## License
