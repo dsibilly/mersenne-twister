@@ -1,4 +1,6 @@
+.nyc_output
 coverage
 example.js
 js
 test
+*.sh
