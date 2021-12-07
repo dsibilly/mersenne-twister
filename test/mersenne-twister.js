@@ -1,13 +1,9 @@
-import {
-    describe,
-    it
-} from 'mocha';
+'use strict';
 
-import {
-    expect
-} from 'chai';
+const chai = require('chai'),
+    expect = chai.expect,
 
-import MersenneTwister from '../js/mersenne-twister';
+    MersenneTwister = require('../js/mersenne-twister');
 
 describe('MersenneTwister', () => {
     it('should repeat random sequence on a given seed', () => {
