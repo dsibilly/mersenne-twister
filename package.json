@@ -28,5 +28,5 @@
         "rebuild": "rm -rf ./node_modules && rm package-lock.json && npm install",
         "test": "mocha"
     },
-    "version": "1.0.5"
+    "version": "2.0.0"
 }
