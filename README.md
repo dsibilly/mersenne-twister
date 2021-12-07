@@ -17,7 +17,7 @@ $ npm install @dsibilly/mersenne-twister
 Get an instance of RNG:
 
 ```javascript
-const MersenneTwister = require('@dsibilly/mersenne-twister').default,
+const MersenneTwister = require('@dsibilly/mersenne-twister'),
   rng = = new MersenneTwister();
 ```
 
